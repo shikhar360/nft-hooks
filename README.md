@@ -1,16 +1,66 @@
-# TSDX React User Guide
+# How to use the useMintNft hook
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+Start by
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+``npm i @shikhar360/nft-hooks``
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
 
-## Commands
+```javascript
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+//You have to pass the following as a prop to the useNftMint function
 
-The recommended workflow is to run TSDX in one terminal:
+ const options : MintingProps = {
+        token: process.env.NEXT_YOUR_TOKEN,
+        file: file, // this should be a BLOB
+        nftName: "ChintuTesting",  // The name of the nft that you want to set
+        nftDescription: "this is a test nft", //description of the nft
+        mintToAddress: "0xa2BFmyEthereumAddressd67F31", 
+        contractName : "dnews" // the name of the NFT-Product contract 
+      }
+  
+const data  =  useMintNft( options )
+
+```
+#### How it works:
+
+1. useMintNft uploads the data to the IPFS and return the response (IPFS_URL)
+
+2. Then the IPFS_URL goes for the metadating and it returns the METADATA_URI
+
+3. After getting the METADATA_URI it runs the normal easy minting function
+
+#### The error I am getting
+```
+nft-hooks.esm.js?a0c7:365          POST https://api.nftport.xyz/v0/files 400
+
+nft-hooks.esm.js?a0c7:368 undefined
+
+nft-hooks.esm.js?a0c7:374 Metadating starts................................................
+
+nft-hooks.esm.js?a0c7:379 finding contract................................................
+
+nft-hooks.esm.js?a0c7:488 {name: 'dnews', symbol: 'DNS', transaction_hash: '0xe0646453401881896290d7cc6a70152d034d73e4b759c225b343a05ff95a1f7c', transaction_external_url: 'https://polygonscan.com/tx/0xe0646453401881896290d7cc6a70152d034d73e4b759c225b343a05ff95a1f7c', chain: 'polygon', …}
+
+nft-hooks.esm.js?a0c7:384 MInting starts................................................
+
+nft-hooks.esm.js?a0c7:449          POST https://api.nftport.xyz/v0/mints/customizable 429
+
+-- StatusCode 429
+-- Too many requests
+
+```
+I have checked the Blob file it is OK 
+Dont know where I am getting the error
+
+
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________
+___________________________________________________________________________________________________ 
+ 
+# How to get started with the files
 
 ```bash
 npm start # or yarn start

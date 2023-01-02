@@ -8,8 +8,16 @@ Start by
 ### useGetAllNfts
 
 
+```javascript
+//Step 1
+import {useGelAllNfts} from '@shikhar360/nft-hooks'
 
+//Step 2
+const data = await useGetAllNfts('0x24425365yourWalletAddressBroo...')
+    console.log(data);
+```
 
+Supported chains : Ethereum , Polygon , BinanceSmartChain
 
 
 
